@@ -9,11 +9,14 @@ import {
 } from 'react-native';
 import {Text, Spinner, Form, Item, Input} from 'native-base';
 import {RNCamera} from 'react-native-camera';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 import {config} from '../constants/config';
+import {
+  fetchProduct,
+} from '../helpers/fetchers';
 
-export const Scanner = ({navigation}) => {
+export const Scanner = () => {
   const [scannedCode, setScannedCode] = useState('');
   const [fetching, setFetching] = useState(false);
   const [enterManually, setEnterManually] = useState(false);
@@ -22,9 +25,10 @@ export const Scanner = ({navigation}) => {
   const [error, setError] = useState('');
 
   const textInputRef = useRef();
+  const navigation = useNavigation();
 
   useEffect(() => {
-    if (scannedCode != '') _fetchItem(scannedCode);
+    if (scannedCode != '') _fetchProduct(scannedCode);
   }, [scannedCode]);
 
   useEffect(() => {
@@ -111,7 +115,7 @@ export const Scanner = ({navigation}) => {
         <Button
           title="See Product Page"
           onPress={() =>
-            navigation.navigate('Product', {product: fetchedProduct})
+            navigation.navigate('Home', {screen: 'Product', params: {product: fetchedProduct}})
           }
         />
         <Text style={styles.text}>- OR -</Text>
@@ -131,7 +135,7 @@ export const Scanner = ({navigation}) => {
       <>
         <Button
           title="Search for Product"
-          onPress={() => _fetchItem(manualCode)}
+          onPress={() => _fetchProduct(manualCode)}
         />
         <Text style={styles.text}>- OR -</Text>
         <Button
@@ -142,20 +146,15 @@ export const Scanner = ({navigation}) => {
     );
   };
 
-  const _fetchItem = (code) => {
+  const _fetchProduct = async (code) => {
     setFetching(true);
-    fetch(`${config.api}/products/barcode/${code}`)
-      .then((res) => res.json())
-      .then((res) => {
-        if (!res.barcode) {
-          throw new Error('That item doesnt exist!');
-        }
+      let res = await fetchProduct(code);
+      if (!res.barcode) {
+        setError('That item doesnt exist!');
+      } else {
         setFetchedProduct(res);
-      })
-      .catch((e) => {
-        setError(e.message);
-      })
-      .then(() => setFetching(false));
+      }
+    setFetching(false);
   };
 
   // <Button title="Clear Scan" onPress={() => setScannedCode('')} />

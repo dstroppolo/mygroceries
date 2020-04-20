@@ -38,6 +38,7 @@ const App = () => {
         name="Home"
         component={HomeStack}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) =>
             focused ? (
               <Icon name="home" style={{color: '#FA8776'}} />
@@ -50,6 +51,8 @@ const App = () => {
         name="Scanner"
         component={Scanner}
         options={{
+          unmountOnBlur: true,
+
           tabBarIcon: ({focused}) =>
             focused ? (
               <Icon type="MaterialCommunityIcons" name="barcode-scan" style={{color: '#FA8776'}}/>
@@ -62,6 +65,8 @@ const App = () => {
         name="Account"
         component={Account}
         options={{
+          unmountOnBlur: true,
+
           tabBarIcon: ({focused}) =>
             focused ? (
               <Icon type="MaterialCommunityIcons" name="account" style={{color: '#FA8776'}} />
