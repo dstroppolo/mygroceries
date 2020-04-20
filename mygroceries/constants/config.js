@@ -1,3 +1,3 @@
 export const config = {
-  api: 'https://d8ae088e.ngrok.io',
+  api: 'https://1f9e6acc.ngrok.io',
 }

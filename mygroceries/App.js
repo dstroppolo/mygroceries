@@ -18,7 +18,7 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Icon} from 'native-base';
 
-import Home from './screens/Home';
+import HomeStack from './screens/HomeStack';
 import Scanner from './screens/Scanner';
 import Account from './screens/Account';
 
@@ -32,10 +32,11 @@ const App = () => {
         inactiveTintColor: '#a195e5',
         activeBackgroundColor: '#2B12AF',
         inactiveBackgroundColor: '#4D4384',
+        keyboardHidesTabBar: true
       }}>
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeStack}
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
