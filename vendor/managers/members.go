@@ -20,7 +20,6 @@ func Login(email string, password string) (string, error) {
 	}
 
 	stmt := "SELECT email, password, uuid FROM users WHERE email='" + email + "'"
-
 	res := db.QueryRow(stmt)
 	if err != nil {
 		//TODO return error

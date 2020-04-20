@@ -23,6 +23,7 @@ func main() {
 	secured.HandleFunc("/products/sale", api.GetProductsOnSale)
 	secured.HandleFunc("/categories", api.GetMainCategories)
 	secured.HandleFunc("/categories/{main}", api.GetSubCategoriesByMain)
+
 	r.HandleFunc("/login", api.Login).Methods("POST")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

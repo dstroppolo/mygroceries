@@ -17,7 +17,7 @@ func CreateMemberFromQuery(row *sql.Row) Member {
 	m := Member{}
 	err := row.Scan(&m.Email, &m.Password, &m.UUID)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
 	}
 	return m
 }
