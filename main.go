@@ -18,5 +18,6 @@ func main() {
 	r.HandleFunc("/products/sale", api.GetProductsOnSale)
 	r.HandleFunc("/categories", api.GetMainCategories)
 	r.HandleFunc("/categories/{main}", api.GetSubCategoriesByMain)
+	r.HandleFunc("/login", api.Login).Methods("POST")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
