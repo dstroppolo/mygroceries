@@ -21,6 +21,7 @@ import {Icon} from 'native-base';
 import HomeStack from './screens/HomeStack';
 import Scanner from './screens/Scanner';
 import Account from './screens/Account';
+import Product from './screens/Product';
 
 const Tab = createBottomTabNavigator();
 
@@ -66,7 +67,20 @@ const App = () => {
         component={Account}
         options={{
           unmountOnBlur: true,
-
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <Icon type="MaterialCommunityIcons" name="account" style={{color: '#FA8776'}} />
+            ) : (
+              <Icon type="MaterialCommunityIcons" name="account" style={{color: '#a195e5'}} />
+            ),
+        }}
+      />
+      <Tab.Screen
+        name="Product"
+        component={Product}
+        options={{
+          unmountOnBlur: true,
+          tabBarButton: () => null,
           tabBarIcon: ({focused}) =>
             focused ? (
               <Icon type="MaterialCommunityIcons" name="account" style={{color: '#FA8776'}} />

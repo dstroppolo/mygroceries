@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import {Text, H1, Icon, H2} from 'native-base';
 
 import {useRoute} from '@react-navigation/native';
@@ -7,7 +8,18 @@ import AppHeader from '../components/AppHeader';
 
 export default Product = ({navigation}) => {
   const route = useRoute();
-  const {product} = route.params;
+  const {product} = route.params || {};
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if(!product.name) {
+        navigation.replace('Home')
+      }
+      return () => {
+        navigation.setParams({product: {}})
+      }
+    })
+  )
 
   const _calculateSavings = (product) => {
     let sale = Number(product.sale_price);

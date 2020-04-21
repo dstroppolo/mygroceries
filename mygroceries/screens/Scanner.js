@@ -115,7 +115,7 @@ export const Scanner = () => {
         <Button
           title="See Product Page"
           onPress={() =>
-            navigation.navigate('Home', {screen: 'Product', params: {product: fetchedProduct}})
+            navigation.navigate('Product', {product: fetchedProduct})
           }
         />
         <Text style={styles.text}>- OR -</Text>
