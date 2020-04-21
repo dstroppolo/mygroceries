@@ -1,0 +1,338 @@
+<h1 id="mygroceries">MY GROCERIES</h1>
+
+<h2 id="categories">CATEGORIES</h2>
+
+<hr />
+
+<h3 id="getmaincategories">GET MAIN CATEGORIES</h3>
+
+<p>Get a list of all main categories available.</p>
+
+<p><strong>URL</strong> : <code>/api/categories</code></p>
+
+<p><strong>Method</strong> : <code>GET</code></p>
+
+<p><strong>Auth required</strong> : YES</p>
+
+<h3 id="successresponse">Success Response</h3>
+
+<p><strong>Code</strong> : <code>200 OK</code></p>
+
+<h3 id="contentexamples">Content examples</h3>
+
+<pre><code class="json language-json">[
+  {
+    "main_category": "frozen",
+    "sub_category": ""
+  },
+  {
+    "main_category": "dairy-eggs",
+    "sub_category": ""
+  },
+]
+</code></pre>
+
+<h2 id="notes">Notes</h2>
+
+<ul>
+<li>Categories do not regularly change in the system.</li>
+</ul>
+
+<hr />
+
+<h3 id="getsubcategories">GET SUB CATEGORIES</h3>
+
+<p>Get a list of all subcategories for a given main category.</p>
+
+<p><strong>URL</strong> : <code>/api/categories/{category-name}</code></p>
+
+<p><strong>Method</strong> : <code>GET</code></p>
+
+<p><strong>Auth required</strong> : YES</p>
+
+<h3 id="successresponse-1">Success Response</h3>
+
+<p><strong>Code</strong> : <code>200 OK</code></p>
+
+<h3 id="contentexamples-1">Content examples</h3>
+
+<pre><code class="json language-json">[
+  {
+    "main_category": "frozen",
+    "sub_category": "appetizers-snacks"
+  },
+  {
+    "main_category": "frozen",
+    "sub_category": "fish-seafood"
+  }
+]
+</code></pre>
+
+<h3 id="errorresponse">Error Response</h3>
+
+<p><strong>Code</strong> : <code>404 NOT FOUND</code></p>
+
+<h3 id="contentexamples-2">Content examples</h3>
+
+<pre><code class="json language-json">{"error": "No such category exists"}
+</code></pre>
+
+<h2 id="notes-1">Notes</h2>
+
+<ul>
+<li>Categories do not regularly change in the system. </li>
+</ul>
+
+<hr />
+
+<h2 id="products">PRODUCTS</h2>
+
+<hr />
+
+<h3 id="getproductbyid">GET PRODUCT BY ID</h3>
+
+<p>Get a product's information given it's UUID.</p>
+
+<p><strong>URL</strong> : <code>/api/products/id/{uuid}</code></p>
+
+<p><strong>Method</strong> : <code>GET</code></p>
+
+<p><strong>Auth required</strong> : YES</p>
+
+<h3 id="successresponse-2">Success Response</h3>
+
+<p><strong>Code</strong> : <code>200 OK</code></p>
+
+<h3 id="contentexamples-3">Content examples</h3>
+
+<pre><code class="json language-json">{
+    "uuid": "8cefae7e-7f81-11ea-b1ba-22000ab3a3ba",
+    "name": "12 grains sliced bread",
+    "brand": "Dempster's",
+    "url": "https://www.metro.ca/en/online-grocery/aisles/bread-bakery-products/packaged-bread/whole-wheat-grain/12-grains-sliced-bread/p/068721722342",
+    "main_category": "bread-bakery-products",
+    "sub_category": "packaged-bread",
+    "weight": "600 g",
+    "barcode": 68721722342,
+    "image": "https://product-images.metro.ca/images/h92/hfe/9398179430430.jpg",
+    "unit": "ea.",
+    "regular_price": "3.79",
+    "sale_price": "2/5.00"
+}
+</code></pre>
+
+<h3 id="errorresponse-1">Error Response</h3>
+
+<p><strong>Code</strong> : <code>404 NOT FOUND</code></p>
+
+<h3 id="contentexamples-4">Content examples</h3>
+
+<pre><code class="json language-json">{"error": "No such product exists"}
+</code></pre>
+
+<hr />
+
+<h3 id="getproductbybarcode">GET PRODUCT BY BARCODE</h3>
+
+<p>Get a product's information given it's barcode.</p>
+
+<p><strong>URL</strong> : <code>/api/products/barcode/{barcode}</code></p>
+
+<p><strong>Method</strong> : <code>GET</code></p>
+
+<p><strong>Auth required</strong> : YES</p>
+
+<h3 id="successresponse-3">Success Response</h3>
+
+<p><strong>Code</strong> : <code>200 OK</code></p>
+
+<h3 id="contentexamples-5">Content examples</h3>
+
+<pre><code class="json language-json">{
+    "uuid": "8cefae7e-7f81-11ea-b1ba-22000ab3a3ba",
+    "name": "12 grains sliced bread",
+    "brand": "Dempster's",
+    "url": "https://www.metro.ca/en/online-grocery/aisles/bread-bakery-products/packaged-bread/whole-wheat-grain/12-grains-sliced-bread/p/068721722342",
+    "main_category": "bread-bakery-products",
+    "sub_category": "packaged-bread",
+    "weight": "600 g",
+    "barcode": 68721722342,
+    "image": "https://product-images.metro.ca/images/h92/hfe/9398179430430.jpg",
+    "unit": "ea.",
+    "regular_price": "3.79",
+    "sale_price": "2/5.00"
+}
+</code></pre>
+
+<h3 id="errorresponse-2">Error Response</h3>
+
+<p><strong>Code</strong> : <code>404 NOT FOUND</code></p>
+
+<h3 id="contentexamples-6">Content examples</h3>
+
+<pre><code class="json language-json">{"error": "No such product exists"}
+</code></pre>
+
+<hr />
+
+<h3 id="getproducts">GET PRODUCTS</h3>
+
+<p>Get a list of products</p>
+
+<p><strong>URL</strong> : <code>/api/products</code></p>
+
+<p><strong>QUERY PARAMS</strong>:</p>
+
+<ul>
+<li><strong>category</strong>: category of products to retrieve</li>
+
+<li><strong>limit</strong>: max number of items to retrieve</li>
+
+<li><strong>offset</strong>: offset for pagination</li>
+
+<li><code>/api/products?category=frozen&amp;limit=12&amp;offset=24</code></li>
+</ul>
+
+<p><strong>Method</strong> : <code>GET</code></p>
+
+<p><strong>Auth required</strong> : YES</p>
+
+<h3 id="successresponse-4">Success Response</h3>
+
+<p><strong>Code</strong> : <code>200 OK</code></p>
+
+<h3 id="contentexamples-7">Content examples</h3>
+
+<pre><code class="json language-json">[
+  {
+    "uuid": "8cefae7e-7f81-11ea-b1ba-22000ab3a3ba",
+    "name": "12 grains sliced bread",
+    "brand": "Dempster's",
+    "url": "https://www.metro.ca/en/online-grocery/aisles/bread-bakery-products/packaged-bread/whole-wheat-grain/12-grains-sliced-bread/p/068721722342",
+    "main_category": "bread-bakery-products",
+    "sub_category": "packaged-bread",
+    "weight": "600 g",
+    "barcode": 68721722342,
+    "image": "https://product-images.metro.ca/images/h92/hfe/9398179430430.jpg",
+    "unit": "ea.",
+    "regular_price": "3.79",
+    "sale_price": "2/5.00"
+  },
+  {
+    ...
+  },
+  ...
+]
+</code></pre>
+
+<h3 id="errorresponse-3">Error Response</h3>
+
+<p><strong>Code</strong> : <code>403 FORBIDDEN</code></p>
+
+<h3 id="contentexamples-8">Content examples</h3>
+
+<pre><code class="json language-json">{
+    "error": "You must be authorized to view this."
+}
+</code></pre>
+
+<hr />
+
+<h3 id="getproductsonsale">GET PRODUCTS ON SALE</h3>
+
+<p>Get a list of products</p>
+
+<p><strong>URL</strong> : <code>/api/products/sale</code></p>
+
+<p><strong>QUERY PARAMS</strong>:</p>
+
+<ul>
+<li><strong>category</strong>: category of products to retrieve</li>
+
+<li><strong>limit</strong>: max number of items to retrieve</li>
+
+<li><strong>offset</strong>: offset for pagination</li>
+
+<li><code>/api/products?category=frozen&amp;limit=12&amp;offset=24</code></li>
+</ul>
+
+<p><strong>Method</strong> : <code>GET</code></p>
+
+<p><strong>Auth required</strong> : YES</p>
+
+<h3 id="successresponse-5">Success Response</h3>
+
+<p><strong>Code</strong> : <code>200 OK</code></p>
+
+<h3 id="contentexamples-9">Content examples</h3>
+
+<pre><code class="json language-json">[
+  {
+    "uuid": "8cefae7e-7f81-11ea-b1ba-22000ab3a3ba",
+    "name": "12 grains sliced bread",
+    "brand": "Dempster's",
+    "url": "https://www.metro.ca/en/online-grocery/aisles/bread-bakery-products/packaged-bread/whole-wheat-grain/12-grains-sliced-bread/p/068721722342",
+    "main_category": "bread-bakery-products",
+    "sub_category": "packaged-bread",
+    "weight": "600 g",
+    "barcode": 68721722342,
+    "image": "https://product-images.metro.ca/images/h92/hfe/9398179430430.jpg",
+    "unit": "ea.",
+    "regular_price": "3.79",
+    "sale_price": "2/5.00"
+  },
+  {
+    ...
+  },
+  ...
+]
+</code></pre>
+
+<h3 id="errorresponse-4">Error Response</h3>
+
+<p><strong>Code</strong> : <code>403 FORBIDDEN</code></p>
+
+<h3 id="contentexamples-10">Content examples</h3>
+
+<pre><code class="json language-json">{
+    "error": "You must be authorized to view this."
+}
+</code></pre>
+
+<hr />
+
+<h2 id="authorization">AUTHORIZATION</h2>
+
+<hr />
+
+<h3 id="login">LOGIN</h3>
+
+<p>Login with a user to retrieve a JWT.</p>
+
+<p><strong>URL</strong> : <code>/login</code></p>
+
+<p><strong>Method</strong> : <code>POST</code></p>
+
+<p><strong>Auth required</strong> : NO</p>
+
+<h3 id="successresponse-6">Success Response</h3>
+
+<p><strong>Code</strong> : <code>200 OK</code></p>
+
+<h3 id="contentexamples-11">Content examples</h3>
+
+<pre><code class="json language-json">{
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRkZEBkZGQuY29tIiwidXVpZCI6IjllMmM0NzA2LTgzMzctMTFlYS04Zjg2LTIyMDAwYTg4ODhjOCJ9.4SHOvwJA-CwhWSlH59lsRks9ywOwKJhVyt2_RRjaj8EyJw"
+}
+</code></pre>
+
+<h3 id="errorresponse-5">Error Response</h3>
+
+<p><strong>Code</strong> : <code>403 FORBIDDEN</code></p>
+
+<h3 id="contentexamples-12">Content examples</h3>
+
+<pre><code class="json language-json">{
+    "error": "No such user exists"
+}
+</code></pre>
