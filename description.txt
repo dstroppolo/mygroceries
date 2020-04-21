@@ -1,0 +1,33 @@
+Grocery Store prices
+
+I have scraped a couple of grocery store's websites to get the prices of all the items they have listed online. Included information is:
+
+- Name
+- Brand
+- URL
+- Image URL
+- Sale Price (if exists)
+- Regular Price
+- Weight/Size (g or ml)
+- Unit Size
+- Barcode Value (same across all stores)
+- Category
+
+Functionality
+- Get all products by store (paginated)
+- Get all products by category (paginated)
+- Get product by barcode
+- Get products on sale
+- Scan a barcode to get the items
+- Manually enter a barcode to get the item
+
+API
+- api/products?store={storeName}&limit=24
+- api/products?category={category}&limit=24
+- api/categories/{category}
+- api/products/sale
+See readme for full specs
+
+The app I built has 3 parts. The first is the login section, which is needed to access the rest of the app.
+The second part is a catalog of the stores products, divided into categories and sub categories.
+The last part is a barcode scanner that can be used to find a product's information by scanning its barcode. A user can also manually enter the barcode.
