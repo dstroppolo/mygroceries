@@ -15,8 +15,9 @@ func GetProductByID(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["uuid"]
 	p := managers.GetByID(id)
 	jsonData, err := json.Marshal(p)
-	if err != nil {
-		//todo: throw error
+	if err != nil || p.Barcode == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("{\"error\": \"No such product exists\"}"))
 	}
 	w.Write(jsonData)
 }
@@ -28,8 +29,9 @@ func GetProductByBarcode(w http.ResponseWriter, r *http.Request) {
 	barcode, _ := strconv.Atoi(barcodeStr)
 	p := managers.GetByBarcode(barcode)
 	jsonData, err := json.Marshal(p)
-	if err != nil {
-		//todo: throw error
+	if err != nil || p.Barcode == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("{\"error\": \"No such product exists\"}"))
 	}
 	w.Write(jsonData)
 }
@@ -46,18 +48,17 @@ func GetProductsOnSale(w http.ResponseWriter, r *http.Request) {
 	_, offsetErr := strconv.Atoi(offset)
 
 	if limitErr != nil {
-		//throw error
+		w.WriteHeader(http.StatusNotImplemented)
+		w.Write([]byte("{\"error\": \"Invalid limit\"}"))
 	}
 
 	if offsetErr != nil {
-		//throw error
+		w.WriteHeader(http.StatusNotImplemented)
+		w.Write([]byte("{\"error\": \"Invalid offset\"}"))
 	}
 
 	p := managers.GetByOnSale(byCategory, limit, offset)
-	jsonData, err := json.Marshal(p)
-	if err != nil {
-		//todo: throw error
-	}
+	jsonData, _ := json.Marshal(p)
 	w.Write(jsonData)
 }
 
@@ -73,17 +74,16 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	_, offsetErr := strconv.Atoi(offset)
 
 	if limitErr != nil {
-		//throw error
+		w.WriteHeader(http.StatusNotImplemented)
+		w.Write([]byte("{\"error\": \"Invalid limit\"}"))
 	}
 
 	if offsetErr != nil {
-		//throw error
+		w.WriteHeader(http.StatusNotImplemented)
+		w.Write([]byte("{\"error\": \"Invalid offset\"}"))
 	}
 
 	p := managers.GetProducts(byCategory, limit, offset)
-	jsonData, err := json.Marshal(p)
-	if err != nil {
-		//todo: throw error
-	}
+	jsonData, _ := json.Marshal(p)
 	w.Write(jsonData)
 }

@@ -14,7 +14,8 @@ func GetMainCategories(w http.ResponseWriter, r *http.Request) {
 	p := managers.GetMainCategories()
 	jsonData, err := json.Marshal(p)
 	if err != nil {
-		//todo: throw error
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("{\"error\": \"No categories exist\"}"))
 	}
 	w.Write(jsonData)
 }
@@ -26,7 +27,8 @@ func GetSubCategoriesByMain(w http.ResponseWriter, r *http.Request) {
 	p := managers.GetSubCategoriesByMain(main)
 	jsonData, err := json.Marshal(p)
 	if err != nil {
-		//todo: throw error
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("{\"error\": \"No such subcategories exist\"}"))
 	}
 	w.Write(jsonData)
 }

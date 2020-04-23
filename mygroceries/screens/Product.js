@@ -15,9 +15,6 @@ export default Product = ({navigation}) => {
       if(!product.name) {
         navigation.replace('Home')
       }
-      return () => {
-        navigation.setParams({product: {}})
-      }
     })
   )
 
