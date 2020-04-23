@@ -22,9 +22,6 @@ func GetByID(uuid string) structs.Product {
 	stmt := selectQ + "uuid = '" + uuid + "'"
 
 	res := db.QueryRow(stmt)
-	if err != nil {
-		//TODO return error
-	}
 	p := structs.CreateProductFromQuery(res)
 	return p
 }
@@ -40,9 +37,6 @@ func GetByBarcode(barcode int) structs.Product {
 	stmt := selectQ + "barcode = '" + strconv.Itoa(barcode) + "'"
 
 	res := db.QueryRow(stmt)
-	if err != nil {
-		//TODO return error
-	}
 	p := structs.CreateProductFromQuery(res)
 	return p
 }
@@ -65,10 +59,7 @@ func GetByOnSale(byCategory string, limit string, offset string) structs.Product
 		stmt += returnWithOffsetLimit(limit, offset)
 	}
 
-	res, err := db.Query(stmt)
-	if err != nil {
-		//TODO return error
-	}
+	res, _ := db.Query(stmt)
 	p := structs.CreateProductsFromQuery(res)
 	return p
 }
@@ -91,10 +82,7 @@ func GetProducts(byCategory string, limit string, offset string) structs.Product
 		stmt += returnWithOffsetLimit(limit, offset)
 	}
 
-	res, err := db.Query(stmt)
-	if err != nil {
-		//TODO return error
-	}
+	res, _ := db.Query(stmt)
 	p := structs.CreateProductsFromQuery(res)
 	return p
 }
