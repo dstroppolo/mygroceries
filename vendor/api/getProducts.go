@@ -18,8 +18,9 @@ func GetProductByID(w http.ResponseWriter, r *http.Request) {
 	if err != nil || p.Barcode == 0 {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("{\"error\": \"No such product exists\"}"))
+	} else {
+		w.Write(jsonData)
 	}
-	w.Write(jsonData)
 }
 
 /*GetProductByBarcode gets a product by its Barcode*/
@@ -32,8 +33,9 @@ func GetProductByBarcode(w http.ResponseWriter, r *http.Request) {
 	if err != nil || p.Barcode == 0 {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("{\"error\": \"No such product exists\"}"))
+	} else {
+		w.Write(jsonData)
 	}
-	w.Write(jsonData)
 }
 
 /*GetProductsOnSale gets all products that are on sale*/

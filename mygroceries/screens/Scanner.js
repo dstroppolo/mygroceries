@@ -28,7 +28,9 @@ export const Scanner = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (scannedCode != '') _fetchProduct(scannedCode);
+    if (scannedCode != '') {
+      _fetchProduct(scannedCode);
+    } 
   }, [scannedCode]);
 
   useEffect(() => {
@@ -65,13 +67,15 @@ export const Scanner = () => {
 
   const _showCamera = () => {
     return (
+      <>
       <RNCamera
         cameraView
         style={styles.preview}
         onBarCodeRead={({data}) => {
-          if (scannedCode == '') setScannedCode(data);
+          if (scannedCode == '' || error != '') setScannedCode(data);
         }}
       />
+      </>
     );
   };
 
@@ -111,7 +115,7 @@ export const Scanner = () => {
 
   const _showAfterScanOption = () => {
     return (
-      <>
+      <>      
         <Button
           title="See Product Page"
           onPress={() =>
@@ -149,10 +153,11 @@ export const Scanner = () => {
   const _fetchProduct = async (code) => {
     setFetching(true);
       let res = await fetchProduct(code);
-      if (!res.barcode) {
+      if (!res.barcode || res.barcode == 0) {
         setError('That item doesnt exist!');
       } else {
         setFetchedProduct(res);
+        setError('');
       }
     setFetching(false);
   };
@@ -169,6 +174,7 @@ export const Scanner = () => {
       </View>
       <View
         style={{flex: 1, alignItems: 'center', justifyContent: 'space-around'}}>
+        {!!error && <Text style={{color: 'red'}}>{error}</Text>}
         {!!fetchedProduct.barcode
           ? _showAfterScanOption()
           : enterManually

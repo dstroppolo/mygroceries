@@ -51,6 +51,7 @@ export const Home = ({navigation}) => {
   };
 
   const _renderCategoryTiles = () => {
+    if(mainCategories && mainCategories.length) {
     return mainCategories.map((cat, i) => {
       return (
         <View
@@ -60,6 +61,7 @@ export const Home = ({navigation}) => {
         </View>
       );
     });
+  }
   };
 
   const _renderProductTiles = () => {

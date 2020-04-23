@@ -20,7 +20,7 @@ export const fetchMainCategories = async () => {
   return await res.json();
 };
 
-export const fetchSubCategories = async (selectedMain) => {
+export const fetchSubCategories = async selectedMain => {
   let auth = await getAuthToken();
   let res = await fetch(`${config.api}/categories/${selectedMain}`, {
     headers: {Authorization: auth},
@@ -39,20 +39,18 @@ export const fetchProducts = async (selectedSub, limit, offset) => {
   return await res.json();
 };
 
-export const fetchProduct = async (code) => {
+export const fetchProduct = async code => {
   let auth = await getAuthToken();
-  let res = await fetch(`${config.api}/products/barcode/${code}`,
-    {
-      headers: {Authorization: auth},
-    },
-  );
-  return await res.json();
+  let res = await fetch(`${config.api}/products/barcode/${code}`, {
+    headers: {Authorization: auth},
+  }).catch(e => console.log(e));
+  return await res.json().catch(e => console.log(e));
 };
 
 export const fetchLogin = async (email, password) => {
   let res = await fetch(`${config.auth}/login`, {
     method: 'post',
     body: JSON.stringify({email, password}),
-  });
+  })
   return await res.json();
 };

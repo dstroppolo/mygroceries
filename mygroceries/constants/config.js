@@ -1,4 +1,4 @@
 export const config = {
-  api: 'https://a9a3ae68.ngrok.io/api',
-  auth: 'https://a9a3ae68.ngrok.io',
+  api: 'https://45bf1974.ngrok.io/api',
+  auth: 'https://45bf1974.ngrok.io',
 }
